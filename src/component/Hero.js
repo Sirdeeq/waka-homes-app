@@ -2,24 +2,25 @@ import React, { useMemo } from "react";
 import ButtonPrimary from "./misc/ButtonPrimary";
 import { motion } from "framer-motion";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
-// import img from "../assets/Icon/heroicons_sm-user.svg";
-
+import img from "../assets/Icon/bx_bxs-server.svg";
+import locations from  '../assets/Icon/gridicons_location.svg'
+import buildings from "../assets/Icon/heroicons_sm-user.svg"
 const Hero = ({
   listUser = [
     {
       name: "Buildings",
       number: "390",
-      icon: "../assets/Icon/heroicons_sm-user.svg",
+      icon: buildings,
     },
     {
       name: "Locations",
       number: "All aroung nigeria",
-      icon: "/assets/Icon/gridicons_location.svg",
+      icon: locations,
     },
     {
       name: "Buildings",
       number: "50",
-      icon: "/assets/Icon/bx_bxs-server.svg",
+      icon:img,
     },
   ],
 }) => {
@@ -39,7 +40,7 @@ const Hero = ({
         >
           <div className=" flex flex-col justify-center items-start row-start-2 sm:row-start-1">
             <h1 className="text-3xl lg:text-4xl xl:text-5xl font-medium text-black-600 leading-normal">
-              Find your next stay with <strong>WakaHomes</strong>.
+              Find your new Home with<strong>WakaHomes</strong>.
             </h1>
             <p className="text-black-500 mt-4 mb-6">
               Revolutionizing property access

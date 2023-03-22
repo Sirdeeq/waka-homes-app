@@ -22,7 +22,7 @@ const Feature = () => {
       <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p  y-8 my-12">
         <ScrollAnimationWrapper className="flex w-full justify-end">
           <motion.div className="h-full w-full p-4" variants={scrollAnimation}>
-            <img src="/assets/Illustration2.png" alt="VPN Illustrasi" />
+            <img src={require('../assets/Illustration2.png')} alt="VPN Illustrasi" />
           </motion.div>
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper>

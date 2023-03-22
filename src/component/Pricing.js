@@ -10,7 +10,7 @@ import Hero from "./Hero";
 import Feature from "./Feature";
 import ArticleCard from "./ArticleCard";
 import img1 from  "../assets/Free.png"
-
+// import Testimoni from './Testimoni'
 const Pricing = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
 
@@ -78,13 +78,13 @@ const Pricing = () => {
               variants={scrollAnimation}
               className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-relaxed w-9/12 sm:w-6/12 lg:w-4/12 mx-auto"
             >
-              Promotions, deals, and special offers for you
+              Operations
             </motion.h3>
             <motion.p
               className="leading-normal  mx-auto my-2 w-10/12 sm:w-7/12 lg:w-6/12"
               variants={scrollAnimation}
             >
-              These popular destinations have a lot to offer
+              Regions we are based so far
             </motion.p>
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
@@ -136,31 +136,32 @@ const Pricing = () => {
               variants={scrollAnimation}
             >
               {/* <Netflix className="h-18 w-auto" /> */}
-              {/* <img
-                src="/assets/Icon/amazon.png"
+              <img
+                src={require('../assets/Icon/amazon.png')}
                 className="h-14 w-auto mt-4 lg:mt-2"
                 alt=""
-              /> */}
+              />
               <img
-                src="/assets/b2b.jpg"
+                src={require('../assets/b2b.jpg')}
                 className="h-14 w-auto mt-2 lg:mt-0"
                 alt=""
               />
               <img
-                src="/assets/travelwings.png"
+              src={require('../assets/travelwings.png')}
                 className="h-12 w-auto mt-2 lg:mt-0"
                 alt=""
               />
               <img
-                src="/assets/booking.jpg"
+
+          src={require('../assets/booking.jpg')}
                 className="h-14 w-auto mt-2 lg:mt-0"
                 alt=""
               />
-              {/* <img
-                src="/assets/Icon/spotify.png"
+              <img
+                src={require('../assets/Icon/spotify.png')}
                 className="h-12 w-auto mt-2 lg:mt-0"
                 alt=""
-              /> */}
+              />
             </motion.div>
           </ScrollAnimationWrapper>
         </div>
