@@ -16,7 +16,7 @@ const Pricing = () => {
 
   return (
     <div
-      className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
+      className="bg-gradient-to-b from-white-300 z-0 to-white-500 w-full py-14"
       id="pricing"
     >
       <div className="max-w-screen-xl  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
@@ -35,7 +35,7 @@ const Pricing = () => {
                     title="A Great Title"
                     date="March 22, 2023"
                     views={100}
-                    imageSrc="https://via.placeholder.com/400x300"
+                    image="https://via.placeholder.com/400x300"
                     imageAlt="Placeholder Image"
                     category="Technology"
                     price="$19.99"
@@ -44,7 +44,7 @@ const Pricing = () => {
                     title="A Great Title"
                     date="March 22, 2023"
                     views={100}
-                    imageSrc="https://via.placeholder.com/400x300"
+                    image="https://via.placeholder.com/400x300"
                     imageAlt="Placeholder Image"
                     category="Technology"
                     price="$19.99"
@@ -53,7 +53,7 @@ const Pricing = () => {
                     title="A Great Title"
                     date="March 22, 2023"
                     views={100}
-                    imageSrc="https://via.placeholder.com/400x300"
+                    image="https://via.placeholder.com/400x300"
                     imageAlt="Placeholder Image"
                     category="Technology"
                     price="$19.99"
@@ -62,7 +62,7 @@ const Pricing = () => {
                     title="A Great Title"
                     date="March 22, 2023"
                     views={100}
-                    imageSrc="https://via.placeholder.com/400x300"
+                    image="https://via.placeholder.com/400x300"
                     imageAlt="Placeholder Image"
                     category="Technology"
                     price="$19.99"

@@ -1,6 +1,6 @@
 import React from "react";
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
-
+import { GoogleMap, Marker, InfoWindow, LoadScript } from "@react-google-maps/api";
+import img from '../assets/green-dot.png'
 const containerStyle = {
   width: "100%",
   height: "400px",
@@ -37,16 +37,25 @@ function Map() {
     setSelectedState(state);
   };
 
+  const onCloseClick = () => {
+    setSelectedState(null);
+  };
+
+
   return (
     <div className="w-full h-full">
+      <LoadScript
+         googleMapsApiKey="AIzaSyDf-yIqxErTkbWzKhLox7nAANnrfDIY190"
+      >
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={6}>
         {stateData.map((state) => (
           <Marker
-            key={state.name}
+          key={state.name}
+          title={state.name}
             position={state.position}
             onClick={() => onSelect(state)}
             icon={{
-              url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+              url: img,
             }}
           />
         ))}
@@ -54,7 +63,7 @@ function Map() {
         {selectedState && (
           <InfoWindow
             position={selectedState.position}
-            onCloseClick={() => setSelectedState(null)}
+            onCloseClick={() => onCloseClick}
           >
             <div>
               <h2 className="text-lg font-bold">{selectedState.name}</h2>
@@ -63,6 +72,7 @@ function Map() {
           </InfoWindow>
         )}
       </GoogleMap>
+      </LoadScript>
     </div>
   );
 }
