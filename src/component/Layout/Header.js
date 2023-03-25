@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import Link from "next/link";
 // Import react scroll
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { Link as LinkScroll } from "react-scroll";
 import ButtonOutline from "../misc/ButtonOutline.";
 import LogoVPN from "../../assets/Logo.svg";
@@ -9,6 +9,8 @@ import LogoVPN from "../../assets/Logo.svg";
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
   const [scrollActive, setScrollActive] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollActive(window.scrollY > 20);
@@ -103,10 +105,12 @@ const Header = () => {
           </ul>
           <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
            
-              <a className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
+              <a  className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all"
+                onClick={()=>navigate('/auth/login')}
+              >
                   Sign In
               </a>
-            <ButtonOutline>Sign Up</ButtonOutline>
+            <ButtonOutline onClick={()=>navigate('/auth/register')}>Sign Up</ButtonOutline>
           </div>
         </nav>
       </header>

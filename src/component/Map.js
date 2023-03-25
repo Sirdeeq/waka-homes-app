@@ -27,6 +27,13 @@ const stateData = [
       lng: 7.489142,
     },
     buildings: 3000,
+  },{
+    name: "Kano",
+    position: {
+      lat: 12.0094,
+      lng: 8.5393,
+    },
+    buildings: 3000,
   },
 ];
 
