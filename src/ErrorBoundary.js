@@ -30,6 +30,7 @@ class ErrorBoundary extends React.Component {
       return (
         <ErrorFallback>
           <ErrorMessage>Something went wrong.</ErrorMessage>
+          {this.props.children}
         </ErrorFallback>
       );
     }

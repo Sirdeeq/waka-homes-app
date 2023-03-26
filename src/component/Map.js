@@ -1,6 +1,10 @@
-import React from "react";
-import { GoogleMap, Marker, InfoWindow, LoadScript } from "@react-google-maps/api";
+import { useEffect, useState } from "react";
+import { GoogleMap, Marker, InfoWindow, Autocomplete,DrawingManager } from "@react-google-maps/api";
 import img from '../assets/green-dot.png'
+import axios from "axios";
+import { API_URL } from "../utils/helpers";
+
+
 const containerStyle = {
   width: "100%",
   height: "400px",
@@ -11,34 +15,11 @@ const center = {
   lng: 8.675277,
 };
 
-const stateData = [
-  {
-    name: "Lagos",
-    position: {
-      lat: 6.4550575,
-      lng: 3.3941795,
-    },
-    buildings: 5000,
-  },
-  {
-    name: "Abuja",
-    position: {
-      lat: 9.055122,
-      lng: 7.489142,
-    },
-    buildings: 3000,
-  },{
-    name: "Kano",
-    position: {
-      lat: 12.0094,
-      lng: 8.5393,
-    },
-    buildings: 3000,
-  },
-];
-
 function Map() {
-  const [selectedState, setSelectedState] = React.useState(null);
+  const [selectedState, setSelectedState] = useState(null);
+  const [statesProps,setStatesProps] = useState([])
+  const [drawingMode, setDrawingMode] = useState(null);
+  const [polygon, setPolygon] = useState(null);
 
   const onSelect = (state) => {
     setSelectedState(state);
@@ -48,19 +29,44 @@ function Map() {
     setSelectedState(null);
   };
 
+  useEffect(()=>{
+    axios.get(`${API_URL}/properties/state-props`)
+    .then(resp=>{
+      console.log({resp});
+      setStatesProps(resp.data.data)
+    })
+    .catch(error=>{
+      console.error(error);
+    })
+  },[])
+
+  const onPolygonComplete = (polygon) => {
+    setDrawingMode(null);
+    setPolygon(polygon);
+  };
 
   return (
     <div className="w-full h-full">
-      <LoadScript
-         googleMapsApiKey="AIzaSyDf-yIqxErTkbWzKhLox7nAANnrfDIY190"
-      >
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={6}>
-        {stateData.map((state) => (
+        
+      <DrawingManager
+          drawingMode={drawingMode}
+          onPolygonComplete={onPolygonComplete}
+          options={{
+            drawingControl: true,
+            drawingControlOptions: { position: window.google.maps.ControlPosition.LEFT_TOP,
+              drawingModes: [window.google.maps.drawing.OverlayType.MARKER,
+                window.google.maps.drawing.OverlayType.POLYGON],
+            },
+          }}
+        />
+        {statesProps.map((state) => (
           <Marker
           key={state.name}
           title={state.name}
-            position={state.position}
+            position={{lat:state.positions.coordinates[1], lng:state.positions.coordinates[0]}}
             onClick={() => onSelect(state)}
+            onMouseOver={() => onSelect(state)}
             icon={{
               url: img,
             }}
@@ -69,17 +75,17 @@ function Map() {
 
         {selectedState && (
           <InfoWindow
-            position={selectedState.position}
+            position={{lat:selectedState.positions.coordinates[1], lng:selectedState.positions.coordinates[0]}}
             onCloseClick={() => onCloseClick}
           >
             <div>
               <h2 className="text-lg font-bold">{selectedState.name}</h2>
-              <p className="text-md">{selectedState.buildings} Buildings</p>
+              <p className="text-md">{selectedState.buildings} {selectedState.buildings > 1? 'Apartments':'Apartment'}</p>
+              <p><a href="/open-state-view">view</a></p>
             </div>
           </InfoWindow>
         )}
       </GoogleMap>
-      </LoadScript>
     </div>
   );
 }
